@@ -9,7 +9,9 @@ pipeline {
         }
         stage('Run test') {
             steps {
-                bat 'mvn clean -Dmaven.test.failure.ignore=true install'
+                withMaven(maven: 'maven_3.6.3') {
+                    bat 'mvn clean -Dmaven.test.failure.ignore=true install'
+                }
             }
         }
         stage('Generate Allure Report') {
