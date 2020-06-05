@@ -9,17 +9,15 @@ pipeline {
         }
         stage('Run test') {
             steps {
-                withMaven(maven: 'maven_3.6.3') {
-                    sh "mvn clean install"
-                }
+                sh "mvn clean install"
             }
         }
-        stage('Generate Allure Report') {
-            steps{
-                allure includeProperties: false,
-                        jdk: '',
-                        results: [[path: 'target/allure-results']]
-            }
+    }
+    stage('Generate Allure Report') {
+        steps {
+            allure includeProperties: false,
+                    jdk: '',
+                    results: [[path: 'target/allure-results']]
         }
     }
 }
