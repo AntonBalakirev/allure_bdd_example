@@ -2,15 +2,24 @@ pipeline{
     agent any
 
     stages{
-        stage('Print String'){
+        stage('Run Tests'){
             steps{
-                bat "echo 'Hello World'"
+                withMaven(maven: 'maven_3.5.2') {
+                    bat "mvn clean -Dtest=AllureTest test"
+                }
             }
         }
-        stage('Print another String'){
+        stage('Allure Report Generation'){
             steps{
-                bat "echo 'Another String'"
+                allure includeProperties: false,
+                        jdk: '',
+                        results: [[path: 'target/allure-results']]
             }
+        }
+    }
+    post {
+        always {
+            cleanWs notFailBuild: true
         }
     }
 }
