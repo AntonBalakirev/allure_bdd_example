@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Run test') {
             steps {
-                sh "mvn clean install"
+                bat 'mvn clean -Dmaven.test.failure.ignore=true install'
             }
         }
         stage('Generate Allure Report') {
