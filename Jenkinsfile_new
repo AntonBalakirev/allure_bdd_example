@@ -3,10 +3,14 @@ pipeline{
 
     stages{
         stage('Print String'){
-            bat 'Hello World'
+            steps{
+                bat 'Hello World'
+            }
         }
         stage('Print another String'){
-            bat 'Another String'
+            steps{
+                bat 'Another String'
+            }
         }
     }
 }
