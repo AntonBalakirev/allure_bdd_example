@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Print message') {
             steps {
-                echo 'Print PARAMS ' + ${PARAMS} +'! '
+                echo "Print PARAMS ' + ${PARAMS} +'! "
             }
         }
     }
