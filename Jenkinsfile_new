@@ -1,0 +1,12 @@
+pipeline{
+    agent any
+
+    stages{
+        stage('Print String'){
+            bat 'Hello World'
+        }
+        stage('Print another String'){
+            bat 'Another String'
+        }
+    }
+}
