@@ -10,7 +10,7 @@ pipeline {
         stage('Run test') {
             steps {
                 withMaven(maven: 'maven_3.6.3') {
-                    sh "clean test -Dtest=AllureTest"
+                    sh "mvn clean test -Dtest=AllureTest"
                 }
             }
         }
