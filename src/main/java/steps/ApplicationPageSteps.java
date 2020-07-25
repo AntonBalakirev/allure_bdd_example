@@ -58,7 +58,7 @@ public class ApplicationPageSteps {
         );
     }
 
-    @Step("проверка сообщения об ошибке {value}")
+    @Step("проверка сообщения об ошибке {errorMessage}")
     public void checkErrorMessage(String errorMessage){
         new ApplicationPage().checkFieldErrorMessage(errorMessage);
         addScreenshot();
