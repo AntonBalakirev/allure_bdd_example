@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Print message') {
             steps {
-                echo "${PARAMS}"
+                echo "${BRANCH}"
             }
         }
         stage('Run test') {
             steps {
                 withMaven(maven: 'maven_3.6.3') {
-                    bat 'mvn clean -Dtest=AllureTest -Dmaven.test.failure.ignore=true install'
+                    bat 'mvn clean test -Dcucumber.filter.tags="${TAG}" -Dmaven.test.failure.ignore=true'
                 }
             }
         }
@@ -18,6 +18,7 @@ pipeline {
             steps {
                 allure includeProperties: false,
                         jdk: '',
+                        report: 'target/allure-report',
                         results: [[path: 'target/allure-results']]
             }
         }
